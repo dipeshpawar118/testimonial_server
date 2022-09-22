@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/get', async (req, res) => {
     try{
-        const data = await testimonialModel.find({ active: 0 });
+        const data = await testimonialModel.find({ active: 1 });
         res.json(data)
     }
     catch(error){
@@ -17,7 +17,7 @@ router.post('/add', async (req, res) => {
     const data = new testimonialModel(reqbody);
     try {
         const dataToSave = await data.save();
-        res.status(200).json(dataToSave)
+        res.status(201).json(dataToSave)
     }
     catch (error) {
         res.status(400).json({message: error.message})
@@ -50,5 +50,3 @@ router.delete('/delete/:id', async (req, res) => {
 
 module.exports = router;
 
-// route.put();
-// route.delete();

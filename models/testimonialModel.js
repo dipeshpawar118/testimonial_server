@@ -5,7 +5,7 @@ const dataSchema = new mongoose.Schema({
         required : true ,
         type : Number
     } ,
-    photo: {
+    image: {
         type: String
     },
     name: {
