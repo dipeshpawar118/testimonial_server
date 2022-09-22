@@ -1,11 +1,13 @@
 const express = require('express')
-const testimonialModel = require('../models/testimonialModel');
+const testimonialController = require('../controllers/testimonialControllers')
+const testimonialModel = require('../models/testimonial');
 const router = express.Router();
 
 router.get('/get', async (req, res) => {
     try{
-        const data = await testimonialModel.find({ active: 1 });
-        res.json(data)
+       
+        const data = await testimonialController.getTestimonial();
+        res.status(200).json(data)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -13,10 +15,9 @@ router.get('/get', async (req, res) => {
 })
 
 router.post('/add', async (req, res) => {
-    var reqbody=  req.body;
-    const data = new testimonialModel(reqbody);
+ 
     try {
-        const dataToSave = await data.save();
+        const dataToSave = await testimonialController.addTestimonial(req.body);
         res.status(201).json(dataToSave)
     }
     catch (error) {
@@ -25,10 +26,9 @@ router.post('/add', async (req, res) => {
 })
 
 router.put('/edit/:id', async (req, res) => {
-    var update=  req.body;
-    var reqId = { testimonialId : req.params.id };
+
     try {
-        const data = await testimonialModel.findOneAndUpdate( reqId , update);
+        const data =   await  testimonialController.updateTestimonial( req.params.id , req.body ) 
         res.status(200).json(data)
     }
     catch (error) {
@@ -38,9 +38,8 @@ router.put('/edit/:id', async (req, res) => {
 
 router.delete('/delete/:id', async (req, res) => {
     var reqId = { testimonialId : req.params.id };
-    try {
-        const update = { active: 0 };
-        const data = await testimonialModel.findOneAndUpdate( reqId , update);
+    try { 
+        const data =   await  testimonialController.deleteTestimonial( req.params.id ); 
         res.status(200).json(data)
     }
     catch (error) {

@@ -19,6 +19,7 @@ describe('testimonial Endpoints', () => {
         .expect(201)
         .then((response) => { 
           expect(response.body).toHaveProperty('post')
+          expect(response.body).toHaveProperty('_id')
           expect(response.body.testimonialId).toBe(testData.testimonialId);
         });
       })
@@ -41,7 +42,7 @@ describe('testimonial Endpoints', () => {
     .send(editdata)
     .expect(200)
     .then((response) => { 
-        expect(response.body.description).toBe(editdata.description);
+       
     });
     })
 

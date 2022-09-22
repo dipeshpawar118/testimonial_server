@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dataSchema = new mongoose.Schema({
+const TestimonialSchema = new mongoose.Schema({
     testimonialId : {
         required : true ,
         type : Number
@@ -19,11 +19,13 @@ const dataSchema = new mongoose.Schema({
         required: true,
         type: String
     },
-    createdOn: {
-        type: String
+    createdOn: { 
+        type: Date,
+        default: Date.now 
     },
-    lastUpdated: {
-        type: String
+    updatedOn: { 
+        type: Date,
+        default: Date.now 
     },
     active :{
         required : true,
@@ -31,4 +33,4 @@ const dataSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Testimonial', dataSchema)
+module.exports = mongoose.model('Testimonial', TestimonialSchema)
