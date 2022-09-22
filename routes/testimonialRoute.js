@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/get', async (req, res) => {
     try{
-       
         const data = await testimonialController.getTestimonial();
         res.status(200).json(data)
     }

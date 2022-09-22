@@ -4,6 +4,7 @@ const counterModel =  require('../models/counter');
 const getTestimonial = async function ( ) {
     
     try {
+
         let testimonialsaved = await  testimonialModel.find({ active: 1 })
         return testimonialsaved
 
@@ -58,14 +59,19 @@ const deleteTestimonial = async function (id) {
 async function getTestimonialId( ) {
     try {
         let id = await counterModel.find();
-        if(id.length ===0 ){
-            id.push({ count : 0 } )
+        if(id.length === 0 ){
+            var counterData = new counterModel({ count : 1 });
+            const counterSaved = await counterData.save()
+            return 1;
+
+        }else {
+            let newTestimonialId =  id[0].count + 1;
+            var reqId = { count : id[0].count };
+            var update = { count :newTestimonialId };
+            await counterModel.findOneAndUpdate( reqId , update);
+            return newTestimonialId;
         }
-        let newTestimonialId =  id[0].count + 1;
-        var reqId = { count : id[0].count };
-        var update = { count :newTestimonialId };
-        await counterModel.findOneAndUpdate( reqId , update);
-        return newTestimonialId;
+       
 
     } catch (err) {
         console.log(err)
