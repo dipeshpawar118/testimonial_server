@@ -12,7 +12,7 @@ describe('testimonial Endpoints', () => {
     var size;
     var id 
     it('should add post', async () => {
-        await request(app).post("/testimonial/add" )
+        await request(app).post("/.netlify/functions/api/add" )
         .send(testData)
         .expect(201)
         .then((response) => { 
@@ -22,7 +22,7 @@ describe('testimonial Endpoints', () => {
         });
       })
    it('should get post', async () => {
-    await request(app).get("/testimonial/get" )
+    await request(app).get("/.netlify/functions/api/get" )
     .expect(200)
     .then((response) => { 
         size = response.body.length;
@@ -36,7 +36,7 @@ describe('testimonial Endpoints', () => {
   it('should update post', async () => {
     var editdata = testData
     editdata.description = "updated"
-    await request(app).put('/testimonial/edit/'+id +"" )
+    await request(app).put('/.netlify/functions/api/edit/'+id +"" )
     .send(editdata)
     .expect(200)
     .then((response) => { 
@@ -45,7 +45,7 @@ describe('testimonial Endpoints', () => {
     })
 
    it('should delete post', async () => {
-        await request(app).delete('/testimonial/delete/'+id+"" )
+        await request(app).delete('/.netlify/functions/api/delete/'+id+"" )
         .expect(200)
         .then((response) => { 
 
