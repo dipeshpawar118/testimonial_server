@@ -1,5 +1,5 @@
 const request = require('supertest')
-const app = require('../app')
+const app = require('../src/api')
 var testData = {
     "image": "image",
     "name": "Dipesh",

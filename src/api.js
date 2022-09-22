@@ -20,6 +20,8 @@ app.use(cors({
 app.use(express.json())
 app.use(express.urlencoded({ extended : true }))
 app.use('/testimonial' , testimonialRoute)
+
+app.use(`/.netlify/functions/api/testimonial`, testimonialRoute);
 app.listen(port, () => {
    console.log(`Example app listening on port ${port}`)
 })
