@@ -2,7 +2,7 @@ const request = require('supertest')
 const app = require('../app')
 var testData = {
     "testimonialId": 3,
-    "photo": "dipeshPhoto",
+    "image": "image",
     "name": "Dipesh",
     "post": "CEO",
     "description": "Test description edited ",
